@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": false,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "noEmit": false,
+        "target": "ES5",
+        "outDir": "lib",
+        "moduleResolution": "Node",
+        "baseUrl": "src",
+        "rootDir": "src",
+        "strict": true,
+        "esModuleInterop": true,
+        "lib": ["ES2015"]
+    },
+    "include": ["src", "src/**/*.d.ts"],
+    "exclude": [
+        "node_modules",
+        "lib",
+        "test"
+    ],
+}
