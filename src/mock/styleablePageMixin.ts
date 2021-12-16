@@ -34,6 +34,7 @@ export function styleablePageMixin(PageClass: typeof Page) {
         this.dispatch?.(
           addContextChild(name, child, classNames, userProps, defaultClassNames)
         );
+      this.layout.addChild(child);
     }
 
     private updateHeaderBar() {
@@ -91,7 +92,7 @@ export function styleablePageMixin(PageClass: typeof Page) {
       this.dispatch?.(removeContextChildren());
     }
 
-    onLoad = () => {
+    onLoad() {
       // this.themeContext = Application.theme(createPageContext(this, name, null, null), name);
       this.themeContext = ThemeService.instance?.addPage(
         createPageContext(this, this.name),

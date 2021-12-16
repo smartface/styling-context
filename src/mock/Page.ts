@@ -25,7 +25,8 @@ interface Children {
   headerBar?: HeaderBar;
   [key: string]: any;
 };
-const Flex = styleableContainerComponentMixin(FlexLayout);
+// const Flex = styleableContainerComponentMixin(FlexLayout);
+
 // cannot catch the type is container or not with class $$BtnNext
 // therefore a variable is used
 const $$BtnNext = class extends Button {
@@ -47,10 +48,9 @@ const $BtnNext = (extendOfViewGroup($$BtnNext)
   ? styleableContainerComponentMixin($$BtnNext)
   : styleableComponentMixin($$BtnNext));
 
-const but = new $BtnNext();
+// const but = new $BtnNext();
 
-class $Page extends Page {
-  readonly dispatch?: StyleContextComponent;
+class $Page extends styleablePageMixin(Page) {
   private _children: Children;
   get children(): Readonly<Children> {
     return this._children;
@@ -76,11 +76,12 @@ class $Page extends Page {
       userProps: { visible: true },
     },
   };
-  
+
   btnNext: StyleContextComponentWithDispatch<Button>;
 
   constructor(props?: any) {
     super(
+      "page1",
       Object.assign(
         {
           orientation: Page.Orientation.PORTRAIT,
@@ -96,7 +97,7 @@ class $Page extends Page {
     };
     this.btnNext = this.children.btnNext;
 
-    this.addChildByName(this.btnNext, "btnNext");
+    this.addStyleableChild(this.btnNext, "btnNext");
     pageContextPatch(this, "page1");
     this.applyTestIDs("_Page1");
   }
@@ -110,11 +111,7 @@ class $Page extends Page {
     this.addChild(child);
   }
 
-  addStyleableChild(child: View, name: string, classNames?: string, userProps?: { [key: string]: any }, defaultClassNames?: string){
-    this.addChildByName(child, name);
-  }
-
-  protected addChild(child: View) {
+  addChild(child: View) {
     this.layout.addChild(child);
   }
 
@@ -129,4 +126,4 @@ class $Page extends Page {
   }
 }
 
-export default styleablePageMixin($Page);
+export default $Page;
