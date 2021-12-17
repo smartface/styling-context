@@ -11,20 +11,15 @@ import Page = require("@smartface/native/ui/page");
 import type View = require("@smartface/native/ui/view");
 import { ComponentStyleContext } from "../ComponentStyleContext";
 import Button = require("@smartface/native/ui/button");
-import { StyleContextComponent, StyleContextComponentWithDispatch } from "../";
+import { StyleContextComponentWithDispatch } from "../";
 import { styleablePageMixin } from "./styleablePageMixin";
 import { styleableComponentMixin, styleableContainerComponentMixin } from "./styleableComponentMixin";
 import { extendOfViewGroup } from "./extendOfViewGroup";
 import StatusBar = require("@smartface/native/application/statusbar");
 import HeaderBar = require("@smartface/native/ui/headerbar");
-import FlexLayout = require("@smartface/native/ui/flexlayout");
+// import FlexLayout = require("@smartface/native/ui/flexlayout");
 
-interface Children {
-  btnNext: StyleContextComponentWithDispatch<Button>;
-  statusBar?: StatusBar;
-  headerBar?: HeaderBar;
-  [key: string]: any;
-};
+
 // const Flex = styleableContainerComponentMixin(FlexLayout);
 
 // cannot catch the type is container or not with class $$BtnNext
@@ -43,7 +38,12 @@ const $$BtnNext = class extends Button {
     super({ text: "Next Page" });
   }
 }
-
+interface Children {
+  btnNext: StyleContextComponentWithDispatch<Button>;
+  statusBar?: StatusBar;
+  headerBar?: HeaderBar;
+  [key: string]: any;
+};
 const $BtnNext = (extendOfViewGroup($$BtnNext)
   ? styleableContainerComponentMixin($$BtnNext)
   : styleableComponentMixin($$BtnNext));
