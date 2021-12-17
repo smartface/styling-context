@@ -1,11 +1,11 @@
 import type View = require("@smartface/native/ui/view");
 import createPageContext from "pageContext";
-import { ThemeService } from "../ThemeService";
-import { StyleContextComponentType, StyleContextComponent } from "..";
+import { ThemeService } from "./ThemeService";
+import { StyleContextComponentType, StyleContextComponent } from ".";
 import { StyleablePage } from "./StyleablePage";
-import addContextChild from "../action/addChild";
-import removeContextChild from "../action/removeChild";
-import removeContextChildren from "../action/removeChildren";
+import addContextChild from "./action/addChild";
+import removeContextChild from "./action/removeChild";
+import removeContextChildren from "./action/removeChildren";
 import { PageClass } from "./PageClass";
 import Page = require("@smartface/native/ui/page");
 import { ThemeDispatchFn } from "@smartface/contx/lib/styling/ThemeContext";
