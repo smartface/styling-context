@@ -48,8 +48,7 @@ const $BtnNext = (extendOfViewGroup($$BtnNext)
   ? styleableContainerComponentMixin($$BtnNext)
   : styleableComponentMixin($$BtnNext));
 
-// const but = new $BtnNext();
-
+const but = new $BtnNext();
 class $Page extends styleablePageMixin(Page) {
   private _children: Children;
   get children(): Readonly<Children> {
@@ -91,8 +90,8 @@ class $Page extends styleablePageMixin(Page) {
     );
     this.ios && (this.ios.safeAreaLayoutMode = true);
     this._children = {
-      statusBar: this.statusBar || {},
-      headerBar: this.headerBar || {},
+      statusBar: this.statusBar,
+      headerBar: this.headerBar,
       btnNext: new $BtnNext(),
     };
     this.btnNext = this.children.btnNext;

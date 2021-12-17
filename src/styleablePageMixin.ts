@@ -6,25 +6,27 @@ import { StyleablePage } from "./StyleablePage";
 import addContextChild from "./action/addChild";
 import removeContextChild from "./action/removeChild";
 import removeContextChildren from "./action/removeChildren";
-import { PageClass } from "./PageClass";
-import Page = require("@smartface/native/ui/page");
+import { ContextPage } from "./PageClass";
+import { ConstructorOf } from "ConstructorOf";
 
-
-export function styleablePageMixin(PageClass: typeof Page) {
-  return class
-    extends (PageClass as unknown as PageClass)
-    implements StyleablePage
-  {
+export function styleablePageMixin<
+  T extends ConstructorOf<ContextPage, any> = ConstructorOf<ContextPage, any>
+>(P: T) {
+  const StyleablePageClass = class extends P implements StyleablePage {
     dispatch?: StyleContextComponent["dispatch"];
     themeContext?: (action?: any) => void;
-    private headerBarUpdated: boolean = false;
+    headerBarUpdated: boolean = false;
+    name: string;
 
-    constructor(private name: string, params: Record<string, any>) {
-      super(params);
+    constructor(
+      ...args: any[]
+    ) {
+      super(...args);
+      this.name = args[0];
     }
 
     addStyleableChild(
-      child: View<typeof View.Events>,
+      child: View<any>,
       name?: string,
       classNames?: string,
       userProps?: { [key: string]: any },
@@ -37,7 +39,7 @@ export function styleablePageMixin(PageClass: typeof Page) {
       this.layout.addChild(child);
     }
 
-    private updateHeaderBar() {
+    updateHeaderBar() {
       if (
         this.parentController &&
         this.parentController.headerBar &&
@@ -99,7 +101,7 @@ export function styleablePageMixin(PageClass: typeof Page) {
         this.name
       );
       this.updateHeaderBar();
-    };
+    }
 
     dispose() {
       this.removeChildren();
@@ -132,5 +134,7 @@ export function styleablePageMixin(PageClass: typeof Page) {
         this.layout.applyLayout();
       }
     }
-  };
+  }
+
+  return StyleablePageClass as unknown as ContextPage;
 }
