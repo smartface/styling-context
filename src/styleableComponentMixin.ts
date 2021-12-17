@@ -10,6 +10,21 @@ export function styleableContainerComponentMixin<
   T extends ConstructorOf<any> = ConstructorOf<any>
 >(ViewClass: T) {
   return class extends ViewClass implements Styleable {
+    addChild(
+      child: View,
+      name?: string,
+      classNames?: string,
+      userProps?: { [key: string]: any },
+      defaultClassNames?: string
+    ): void {
+      if(name)
+        this.addStyleableChild(child, name, classNames, userProps, defaultClassNames);
+      else if(this.layout)
+        this.layout.addChild(child);
+      else
+        super.addChild(child);
+    }
+    
     addStyleableChild(
       child: View,
       name: string,

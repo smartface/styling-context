@@ -24,6 +24,19 @@ export function styleablePageMixin<
       this.name = args[0];
     }
 
+    addChild(
+      child: View,
+      name?: string,
+      classNames?: string,
+      userProps?: { [key: string]: any },
+      defaultClassNames?: string
+    ): void {
+      if(name)
+        this.addStyleableChild(child, name, classNames, userProps, defaultClassNames);
+      else if(this.layout)
+        this.layout.addChild(child);
+    }
+
     addStyleableChild(
       child: View<any>,
       name?: string,
@@ -69,7 +82,7 @@ export function styleablePageMixin<
       this.layout.applyLayout();
     };
 
-    onOrientationChange = () => {
+    onOrientationChange = ({orientation}:{orientation: any}) => {
       this.dispatch &&
         this.dispatch({
           type: "orientationStarted",
