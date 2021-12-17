@@ -3,6 +3,9 @@ import { ConstructorOf } from "./ConstructorOf";
 export declare function styleableContainerComponentMixin<T extends ConstructorOf<any> = ConstructorOf<any>>(ViewClass: T): {
     new (...args: any[]): {
         [x: string]: any;
+        addChild(child: View, name?: string | undefined, classNames?: string | undefined, userProps?: {
+            [key: string]: any;
+        } | undefined, defaultClassNames?: string | undefined): void;
         addStyleableChild(child: View, name: string, classNames?: string | undefined, userProps?: {
             [key: string]: any;
         } | undefined, defaultClassNames?: string | undefined): void;

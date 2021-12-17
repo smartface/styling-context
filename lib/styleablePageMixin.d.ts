@@ -7,13 +7,18 @@ export declare function styleablePageMixin<T extends new (...args: any[]) => any
         themeContext?: ((action?: any) => void) | undefined;
         headerBarUpdated: boolean;
         name: string;
+        addChild(child: View, name?: string | undefined, classNames?: string | undefined, userProps?: {
+            [key: string]: any;
+        } | undefined, defaultClassNames?: string | undefined): void;
         addStyleableChild(child: View<any>, name?: string | undefined, classNames?: string | undefined, userProps?: {
             [key: string]: any;
         } | undefined, defaultClassNames?: string | undefined): void;
         updateHeaderBar(): void;
         componentDidEnter(dispatcher: StyleContextComponent["dispatch"]): void;
         onShow: () => void;
-        onOrientationChange: () => void;
+        onOrientationChange: ({ orientation }: {
+            orientation: any;
+        }) => void;
         removeChild(child: StyleContextComponentType<View>): void;
         removeChildren(): void;
         onLoad(): void;
