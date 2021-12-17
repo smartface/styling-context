@@ -10,18 +10,17 @@ import { ContextPage } from "./PageClass";
 import { ConstructorOf } from "ConstructorOf";
 
 export function styleablePageMixin<
-  T extends ConstructorOf<ContextPage, any> = ConstructorOf<ContextPage, any>
->(P: T) {
-  const StyleablePageClass = class extends P implements StyleablePage {
+  T extends new(...args: any[])=>any = new(...args: any[])=>any
+>(Pg: T) {
+  
+  const StyleablePageClass = class extends (Pg as unknown as T) implements StyleablePage {
     dispatch?: StyleContextComponent["dispatch"];
     themeContext?: (action?: any) => void;
     headerBarUpdated: boolean = false;
     name: string;
 
-    constructor(
-      ...args: any[]
-    ) {
-      super(...args);
+    constructor(...args: any[]) {
+      super(args[1]);
       this.name = args[0];
     }
 
@@ -136,5 +135,5 @@ export function styleablePageMixin<
     }
   }
 
-  return StyleablePageClass as unknown as ContextPage;
+  return StyleablePageClass;
 }

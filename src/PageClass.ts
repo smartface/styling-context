@@ -18,6 +18,6 @@ export interface ContextPage extends Page {
   
 }
 
-export interface PageClass {
+export interface PageClass<T> {
   new (...args: any[]): ContextPage
 }

@@ -80,7 +80,6 @@ class $Page extends styleablePageMixin(Page) {
 
   constructor(props?: any) {
     super(
-      "page1",
       Object.assign(
         {
           orientation: Page.Orientation.PORTRAIT,
@@ -88,6 +87,8 @@ class $Page extends styleablePageMixin(Page) {
         props
       )
     );
+    this.name = "page1";
+    
     this.ios && (this.ios.safeAreaLayoutMode = true);
     this._children = {
       statusBar: this.statusBar,
