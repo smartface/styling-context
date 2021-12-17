@@ -1,6 +1,6 @@
 import HeaderBar = require("@smartface/native/ui/headerbar");
 import type View = require("@smartface/native/ui/view");
-import { StyleContextComponentType, StyleContextComponent } from "@smartface/styling-context/src";
+import { StyleContextComponent } from ".";
 
 export interface StyleablePage {
   readonly dispatch?: StyleContextComponent['dispatch'];

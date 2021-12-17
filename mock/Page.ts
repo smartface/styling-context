@@ -9,12 +9,12 @@
 import pageContextPatch from "@smartface/contx/lib/smartface/pageContextPatch";
 import Page = require("@smartface/native/ui/page");
 import type View = require("@smartface/native/ui/view");
-import { ComponentStyleContext } from "../ComponentStyleContext";
+import { ComponentStyleContext } from "../src/ComponentStyleContext";
 import Button = require("@smartface/native/ui/button");
-import { StyleContextComponentWithDispatch } from "../";
-import { styleablePageMixin } from "./styleablePageMixin";
-import { styleableComponentMixin, styleableContainerComponentMixin } from "./styleableComponentMixin";
-import { extendOfViewGroup } from "./extendOfViewGroup";
+import { StyleContextComponentWithDispatch } from "../src/";
+import { styleablePageMixin } from "../src//styleablePageMixin";
+import { styleableComponentMixin, styleableContainerComponentMixin } from "../src/styleableComponentMixin";
+import { extendOfViewGroup } from "../src/extendOfViewGroup";
 import StatusBar = require("@smartface/native/application/statusbar");
 import HeaderBar = require("@smartface/native/ui/headerbar");
 // import FlexLayout = require("@smartface/native/ui/flexlayout");

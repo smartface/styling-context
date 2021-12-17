@@ -1,4 +1,4 @@
-import type View = require("@smartface/native/ui/view");
+import View = require("@smartface/native/ui/view");
 import createPageContext from "pageContext";
 import { ThemeService } from "./ThemeService";
 import { StyleContextComponentType, StyleContextComponent } from ".";
@@ -8,7 +8,7 @@ import removeContextChild from "./action/removeChild";
 import removeContextChildren from "./action/removeChildren";
 import { PageClass } from "./PageClass";
 import Page = require("@smartface/native/ui/page");
-import { ThemeDispatchFn } from "@smartface/contx/lib/styling/ThemeContext";
+
 
 export function styleablePageMixin(PageClass: typeof Page) {
   return class
@@ -16,7 +16,7 @@ export function styleablePageMixin(PageClass: typeof Page) {
     implements StyleablePage
   {
     dispatch?: StyleContextComponent["dispatch"];
-    themeContext?: ThemeDispatchFn;
+    themeContext?: (action?: any) => void;
     private headerBarUpdated: boolean = false;
 
     constructor(private name: string, params: Record<string, any>) {

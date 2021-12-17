@@ -14,7 +14,7 @@ export class ThemeService {
     rawStyles: require(`./generated/themes/${name}`),
     isDefault: this.currentTheme === name,
   }));
-  private themeBoundry = createThemeContextBound(this.themeSources);
+  private themeBoundry = createThemeContextBound(this.themeSources) as any;
   static instance: ThemeService;
   
   constructor(private config: Record<any, any>) {
